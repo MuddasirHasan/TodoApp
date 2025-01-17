@@ -7,7 +7,11 @@ const Stack = createNativeStackNavigator();
 function ApiTodoStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="ApiTodoScreen" component={ApiTodoScreen} />
+      <Stack.Screen
+        name="ApiTodoScreen"
+        component={ApiTodoScreen}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 }

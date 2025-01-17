@@ -8,7 +8,11 @@ const Stack = createNativeStackNavigator();
 function LocalTodoStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="LocalTodoScreen" component={LocalTodoScreen} />
+      <Stack.Screen
+        name="Create your Tasks"
+        component={LocalTodoScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="ViewTodoScreen" component={ViewTodoScreen} />
     </Stack.Navigator>
   );
