@@ -72,7 +72,10 @@ export const useStyle = () => {
       alignItems: 'center',
       padding: wp(2),
       borderRadius: wp(2),
+      marginBottom: hp(3),
     },
+    flatListContainer: {},
+
     btnTxtStyle: {
       color: colors.white,
       fontSize: fontSizes.FONT_SIZE_14,

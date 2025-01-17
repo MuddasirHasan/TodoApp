@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -5,9 +6,13 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import TaskList from '../../components/TaskList/TaskList';
-import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
 import {useColors} from '../../hooks';
@@ -39,11 +44,24 @@ const LocalTodoScreen = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  const renderTaskItem = ({item}) => (
+    <TaskList
+      title={item.taskName}
+      description={item.taskDetail}
+      date={item.date}
+      time={item.time}
+      backgroundColor="white"
+      readMore
+      remove
+    />
+  );
+
   return (
     <LinearGradient
       colors={[colors.primary5, colors.primary2]}
       style={styles.screen}>
-      {/*search container */}
+      {/* Search Container */}
       <View style={styles.mainSearchContainer}>
         <View style={styles.searchViewContainer}>
           <View style={styles.searchContainer}>
@@ -65,24 +83,21 @@ const LocalTodoScreen = () => {
         </TouchableOpacity>
       </View>
 
-      {/*Add Task button */}
+      {/* Add Task Button */}
       <TouchableOpacity style={styles.addTaskBtn} onPress={toggleModal}>
         <Text style={styles.btnTxtStyle}>Add Task</Text>
       </TouchableOpacity>
-      {/*Tasks Lists */}
-      <TaskList
-        backgroundColor={'white'}
-        description={
-          'my desc dfgsdfsdfsdfd df dfsdfsdfsdf dfdfdferrttyrt ffsdfsdfsd sd '
-        }
-        title={'my title'}
-        date={'15-01-2025'}
-        time={'06:45'}
-        readMore
-        remove
+
+      {/* Task List using FlatList */}
+      <FlatList
+        data={dataList}
+        renderItem={renderTaskItem}
+        keyExtractor={item => item.id} // Unique key for each item
+        contentContainerStyle={styles.flatListContainer}
+        ItemSeparatorComponent={() => <View style={{height: hp(3)}} />}
       />
 
-      {/*Modal */}
+      {/* Modal */}
       <Modal
         isVisible={isModalVisible}
         onBackdropPress={toggleModal} // Close modal on backdrop press
@@ -102,7 +117,7 @@ const LocalTodoScreen = () => {
             textAlignVertical="top"
           />
 
-          {/*time and date fields */}
+          {/* Time and Date Fields */}
           <View style={styles.dtContainer}>
             <TouchableOpacity style={styles.dateContainer}>
               <Image source={require('../../assets/dateIcon.png')} />
@@ -113,7 +128,8 @@ const LocalTodoScreen = () => {
               <Text style={styles.dateStyle}>Time</Text>
             </TouchableOpacity>
           </View>
-          {/*button container */}
+
+          {/* Button Container */}
           <View style={styles.btnContainer}>
             <TouchableOpacity
               style={styles.cancelModalButton}
