@@ -6,7 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-
+import TaskList from '../../components/TaskList/TaskList';
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Modal from 'react-native-modal';
@@ -14,6 +14,23 @@ import {useColors} from '../../hooks';
 import {useStyle} from './Styles';
 
 const styles = useStyle();
+
+const dataList = [
+  {
+    id: '1',
+    taskName: 'task 1',
+    taskDetail: 'task detail 1',
+    date: '05-08-2025',
+    time: '09:25 pm',
+  },
+  {
+    id: '2',
+    taskName: 'task 2',
+    taskDetail: 'task detail 2',
+    date: '06-08-2025',
+    time: '10:20 pm',
+  },
+];
 
 const LocalTodoScreen = () => {
   const {colors} = useColors();
@@ -30,7 +47,11 @@ const LocalTodoScreen = () => {
       <View style={styles.mainSearchContainer}>
         <View style={styles.searchViewContainer}>
           <View style={styles.searchContainer}>
-            <TextInput style={styles.textInputStyle} />
+            <TextInput
+              style={styles.textInputStyle}
+              placeholder="Search"
+              placeholderTextColor={colors.placeholderColor}
+            />
           </View>
           <TouchableOpacity style={styles.searchIcon}>
             <Image source={require('../../assets/search.png')} />
@@ -48,6 +69,19 @@ const LocalTodoScreen = () => {
       <TouchableOpacity style={styles.addTaskBtn} onPress={toggleModal}>
         <Text style={styles.btnTxtStyle}>Add Task</Text>
       </TouchableOpacity>
+      {/*Tasks Lists */}
+      <TaskList
+        backgroundColor={'white'}
+        description={
+          'my desc dfgsdfsdfsdfd df dfsdfsdfsdf dfdfdferrttyrt ffsdfsdfsd sd '
+        }
+        title={'my title'}
+        date={'15-01-2025'}
+        time={'06:45'}
+        readMore
+        remove
+      />
+
       {/*Modal */}
       <Modal
         isVisible={isModalVisible}
