@@ -8,6 +8,8 @@ const useColors = () => {
     primary4: '#103463',
     primary5: '#1252a9',
     iconColor: '#8799b0',
+    placeholderColor: '#cdd3d8',
+    createBtn: '#0ea5e9',
   };
   return {colors};
 };
