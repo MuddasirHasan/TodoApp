@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import SplashScreen from './src/screens/SplashScreen';
+import SplashScreen from './src/screens/SplashScreen/SplashScreen';
 import AppStack from './src/navigation/AppStack/AppStack';
 
 function App() {

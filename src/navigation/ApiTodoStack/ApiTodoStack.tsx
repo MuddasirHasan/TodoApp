@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import ApiTodoScreen from '../../screens/ApiTodoScreen';
+import ApiTodoScreen from '../../screens/ApiTodoScreen/ApiTodoScreen';
 
 const Stack = createNativeStackNavigator();
 

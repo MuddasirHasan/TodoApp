@@ -1,8 +1,8 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import ServiceOneScreen from '../../screens/onboarding/ServiceOneScreen';
-import ServiceTwoScreen from '../../screens/onboarding/ServiceTwoScreen';
-import ServiceThreeScreen from '../../screens/onboarding/ServiceThreeScreen';
+import ServiceOneScreen from '../../screens/onboarding/onboard1/ServiceOneScreen';
+import ServiceTwoScreen from '../../screens/onboarding/onboard2/ServiceTwoScreen';
+import ServiceThreeScreen from '../../screens/onboarding/onboard3/ServiceThreeScreen';
 import BottomTab from '../Tabs/BottomTab';
 
 const Stack = createNativeStackNavigator();

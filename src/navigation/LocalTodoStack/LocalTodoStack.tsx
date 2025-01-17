@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import LocalTodoScreen from '../../screens/LocalTodoScreen';
-import ViewTodoScreen from '../../screens/ViewTodoScreen';
+import LocalTodoScreen from '../../screens/LocalTodoScreen/LocalTodoScreen';
+import ViewTodoScreen from '../../screens/ViewTodoScreen/ViewTodoScreen';
 
 const Stack = createNativeStackNavigator();
 
