@@ -9,10 +9,23 @@ const Stack = createNativeStackNavigator();
 
 function AppStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="ServiceOneScreen" component={ServiceOneScreen} />
-      <Stack.Screen name="ServiceTwoScreen" component={ServiceTwoScreen} />
-      <Stack.Screen name="ServiceThreeScreen" component={ServiceThreeScreen} />
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen
+        name="ServiceOneScreen"
+        component={ServiceOneScreen}
+        options={{headerShown: false}} // Hide header
+      />
+      <Stack.Screen
+        name="ServiceTwoScreen"
+        component={ServiceTwoScreen}
+        options={{headerShown: false}} // Hide header
+      />
+      <Stack.Screen
+        name="ServiceThreeScreen"
+        component={ServiceThreeScreen}
+        options={{headerShown: false}} // Hide header
+      />
+
       <Stack.Screen name="BottomTab" component={BottomTab} />
     </Stack.Navigator>
   );
