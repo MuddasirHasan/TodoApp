@@ -26,7 +26,8 @@ const styles = useStyle();
 const LocalTodoScreen = () => {
   const {colors} = useColors();
   const dispatch = useDispatch();
-  const tasks = useSelector(state => state.tasks.tasks); // Get tasks from Redux store
+  const tasks = useSelector(state => state.tasks.tasks.slice().reverse());
+  // Get tasks from Redux store
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [taskTitle, setTaskTitle] = useState('');
@@ -175,6 +176,7 @@ const LocalTodoScreen = () => {
                 {taskTime.toLocaleTimeString([], {
                   hour: '2-digit',
                   minute: '2-digit',
+                  hour12: true,
                 })}
               </Text>
             </TouchableOpacity>
