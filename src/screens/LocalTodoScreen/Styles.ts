@@ -108,6 +108,7 @@ export const useStyle = () => {
       paddingHorizontal: wp(3),
       marginBottom: wp(5),
       backgroundColor: colors.primary2,
+      color: colors.white,
     },
     modalInputDes: {
       width: '100%',
@@ -118,6 +119,7 @@ export const useStyle = () => {
       paddingHorizontal: wp(3),
       marginBottom: wp(5),
       backgroundColor: colors.primary2,
+      color: colors.white,
     },
     modalButton: {
       backgroundColor: colors.createBtn,
