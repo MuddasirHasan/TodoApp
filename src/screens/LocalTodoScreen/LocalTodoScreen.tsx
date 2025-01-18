@@ -65,6 +65,7 @@ const LocalTodoScreen = () => {
 
   const renderTaskItem = ({item}) => (
     <TaskList
+      id={item.id} // Pass unique task ID
       title={item.taskName}
       description={item.taskDescription}
       date={item.date}

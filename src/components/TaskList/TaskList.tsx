@@ -1,8 +1,11 @@
-import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {deleteTask} from '../../store/taskSlice';
 import {useStyle} from './Styles';
 
 const styles = useStyle();
+
 const TaskList = ({
   backgroundColor,
   title,
@@ -11,7 +14,14 @@ const TaskList = ({
   time,
   readMore,
   remove,
+  id, // Pass task ID as prop
 }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteTask(id)); // Dispatch deleteTask action with task ID
+  };
+
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity
@@ -36,9 +46,8 @@ const TaskList = ({
           style={styles.moreIcon}
         />
       )}
-
       {remove && (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleDelete}>
           <Image
             source={require('../../assets/bin.png')}
             style={styles.binStyle}

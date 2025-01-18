@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit';
-import uuid from 'react-native-uuid';
 
 const taskSlice = createSlice({
   name: 'tasks',
@@ -9,12 +8,15 @@ const taskSlice = createSlice({
   reducers: {
     addTask: (state, action) => {
       state.tasks.push({
-        id: uuid.v4(), // Generate a unique ID for each task
-        ...action.payload, // Add task details from action payload
+        id: Date.now().toString(), // Unique ID for each task
+        ...action.payload,
       });
+    },
+    deleteTask: (state, action) => {
+      state.tasks = state.tasks.filter(task => task.id !== action.payload);
     },
   },
 });
 
-export const {addTask} = taskSlice.actions;
+export const {addTask, deleteTask} = taskSlice.actions;
 export default taskSlice.reducer;
