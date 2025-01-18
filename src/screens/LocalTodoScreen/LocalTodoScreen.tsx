@@ -121,7 +121,12 @@ const LocalTodoScreen = () => {
               placeholder="Search"
               placeholderTextColor={colors.placeholderColor}
               value={searchQuery}
-              onChangeText={setSearchQuery} // Update searchQuery state
+              onChangeText={text => {
+                setSearchQuery(text); // Update searchQuery state
+                if (text.trim() === '') {
+                  setFilteredTasks(reversedTasks); // Reset to all tasks if search field is empty
+                }
+              }}
             />
           </View>
           <TouchableOpacity style={styles.searchIcon} onPress={handleSearch}>
