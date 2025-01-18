@@ -12,6 +12,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import ModalDropdown from 'react-native-modal-dropdown';
 import {useDispatch, useSelector} from 'react-redux';
 import {addTask} from '../../store/taskSlice';
 import TaskList from '../../components/TaskList/TaskList';
@@ -33,6 +34,7 @@ const LocalTodoScreen = () => {
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [taskTitle, setTaskTitle] = useState('');
+  const [sortOption, setSortOption] = useState(null);
   const [taskDescription, setTaskDescription] = useState('');
   const [taskDate, setTaskDate] = useState(new Date());
   const [taskTime, setTaskTime] = useState(new Date());
@@ -96,6 +98,46 @@ const LocalTodoScreen = () => {
     }
 
     setFilteredTasks(filtered);
+  };
+
+  const handleSort = option => {
+    let sortedTasks = [...filteredTasks]; // Clone the current filtered tasks
+
+    if (option === 'name') {
+      // Sort by name (alphabetically)
+      sortedTasks.sort((a, b) => a.taskName.localeCompare(b.taskName));
+    } else if (option === 'dateAsc') {
+      // Sort by date (ascending)
+      sortedTasks.sort((a, b) => {
+        const dateA = new Date(a.date.split('/').reverse().join('-')); // Convert "DD/MM/YYYY" to "YYYY-MM-DD"
+        const dateB = new Date(b.date.split('/').reverse().join('-'));
+        return dateA - dateB;
+      });
+    } else if (option === 'dateDesc') {
+      // Sort by date (descending)
+      sortedTasks.sort((a, b) => {
+        const dateA = new Date(a.date.split('/').reverse().join('-')); // Convert "DD/MM/YYYY" to "YYYY-MM-DD"
+        const dateB = new Date(b.date.split('/').reverse().join('-'));
+        return dateB - dateA;
+      });
+    } else if (option === 'timeAsc') {
+      // Sort by time (ascending)
+      sortedTasks.sort((a, b) => {
+        const timeA = new Date(`1970-01-01T${a.time}`);
+        const timeB = new Date(`1970-01-01T${b.time}`);
+        return timeA - timeB;
+      });
+    } else if (option === 'timeDesc') {
+      // Sort by time (descending)
+      sortedTasks.sort((a, b) => {
+        const timeA = new Date(`1970-01-01T${a.time}`);
+        const timeB = new Date(`1970-01-01T${b.time}`);
+        return timeB - timeA;
+      });
+    }
+
+    setFilteredTasks(sortedTasks); // Update filteredTasks with the sorted list
+    setSortOption(option); // Save the selected option
   };
 
   const handleSearch = () => {
@@ -188,12 +230,36 @@ const LocalTodoScreen = () => {
             <Image source={require('../../assets/search.png')} />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.filterContainer}>
-          <Image
-            source={require('../../assets/filter.png')}
-            tintColor={colors.iconColor}
-          />
-        </TouchableOpacity>
+        <View style={styles.filterContainer}>
+          <ModalDropdown
+            options={[
+              'Sort by Name',
+              'Sort by Date (Ascending)',
+              'Sort by Date (Descending)',
+              'Sort by Time (Ascending)',
+              'Sort by Time (Descending)',
+            ]}
+            onSelect={(index, value) => {
+              // Call handleSort based on the selected option
+              if (value === 'Sort by Name') handleSort('name');
+              if (value === 'Sort by Date (Ascending)') handleSort('dateAsc');
+              if (value === 'Sort by Date (Descending)') handleSort('dateDesc');
+              if (value === 'Sort by Time (Ascending)') handleSort('timeAsc');
+              if (value === 'Sort by Time (Descending)') handleSort('timeDesc');
+            }}
+            defaultValue="Sort Tasks"
+            dropdownStyle={styles.dropdownStyle}
+            textStyle={styles.dropdownTextStyle}
+            showsVerticalScrollIndicator={false} // Disable scroll bar for dropdown
+          >
+            <View style={styles.filterButton}>
+              <Image
+                source={require('../../assets/filter.png')}
+                tintColor={colors.iconColor}
+              />
+            </View>
+          </ModalDropdown>
+        </View>
       </View>
       <View style={styles.filterSearchContainer}>
         {/* Date Filter */}

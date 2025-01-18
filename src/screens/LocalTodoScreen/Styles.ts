@@ -148,6 +148,21 @@ export const useStyle = () => {
       backgroundColor: colors.primary2,
       color: colors.white,
     },
+    dropdownStyle: {
+      width: 200,
+      height: 'auto',
+      backgroundColor: 'white',
+      borderRadius: 8,
+      elevation: 5,
+    },
+    dropdownTextStyle: {
+      fontSize: 16,
+      color: 'black',
+      padding: 10,
+    },
+    filterButton: {
+      padding: 10,
+    },
     modalButton: {
       backgroundColor: colors.createBtn,
       paddingVertical: hp(0.8),
