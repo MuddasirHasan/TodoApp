@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -26,7 +26,9 @@ const styles = useStyle();
 const LocalTodoScreen = () => {
   const {colors} = useColors();
   const dispatch = useDispatch();
-  const tasks = useSelector(state => state.tasks.tasks.slice().reverse());
+  const tasks = useSelector(state => state.tasks.tasks);
+  const reversedTasks = useMemo(() => [...tasks].reverse(), [tasks]);
+
   // Get tasks from Redux store
 
   const [isModalVisible, setModalVisible] = useState(false);
@@ -36,7 +38,8 @@ const LocalTodoScreen = () => {
   const [taskTime, setTaskTime] = useState(new Date());
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
   const [isTimePickerVisible, setTimePickerVisible] = useState(false);
-
+  const [searchQuery, setSearchQuery] = useState(''); // Search query state
+  const [filteredTasks, setFilteredTasks] = useState(reversedTasks); // Filtered tasks state
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -63,6 +66,21 @@ const LocalTodoScreen = () => {
       alert('Please fill in all fields');
     }
   };
+
+  const handleSearch = () => {
+    if (searchQuery.trim() === '') {
+      setFilteredTasks(reversedTasks); // Show all tasks if search query is empty
+    } else {
+      const filtered = reversedTasks.filter(task =>
+        task.taskName.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
+      setFilteredTasks(filtered);
+    }
+  };
+
+  useEffect(() => {
+    setFilteredTasks(reversedTasks); // Update filtered tasks when reversedTasks change
+  }, [reversedTasks]); // Use reversedTasks as dependency
 
   const renderTaskItem = ({item}) => (
     <TaskList
@@ -102,9 +120,11 @@ const LocalTodoScreen = () => {
               style={styles.textInputStyle}
               placeholder="Search"
               placeholderTextColor={colors.placeholderColor}
+              value={searchQuery}
+              onChangeText={setSearchQuery} // Update searchQuery state
             />
           </View>
-          <TouchableOpacity style={styles.searchIcon}>
+          <TouchableOpacity style={styles.searchIcon} onPress={handleSearch}>
             <Image source={require('../../assets/search.png')} />
           </TouchableOpacity>
         </View>
@@ -123,7 +143,7 @@ const LocalTodoScreen = () => {
 
       {/* Task List using FlatList */}
       <FlatList
-        data={tasks} // Use tasks from Redux store
+        data={filteredTasks} // Use filteredTasks instead of all tasks
         renderItem={renderTaskItem}
         keyExtractor={item => item.id}
         contentContainerStyle={styles.flatListContainer}
