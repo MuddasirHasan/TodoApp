@@ -150,11 +150,13 @@ export const useStyle = () => {
     },
     dropdownStyle: {
       width: 200,
-      height: 'auto',
+      maxHeight: 200,
       backgroundColor: 'white',
       borderRadius: 8,
       elevation: 5,
+      paddingVertical: 10,
     },
+
     dropdownTextStyle: {
       fontSize: 16,
       color: 'black',

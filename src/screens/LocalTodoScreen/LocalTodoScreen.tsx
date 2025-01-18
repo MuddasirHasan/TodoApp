@@ -109,14 +109,14 @@ const LocalTodoScreen = () => {
     } else if (option === 'dateAsc') {
       // Sort by date (ascending)
       sortedTasks.sort((a, b) => {
-        const dateA = new Date(a.date.split('/').reverse().join('-')); // Convert "DD/MM/YYYY" to "YYYY-MM-DD"
+        const dateA = new Date(a.date.split('/').reverse().join('-'));
         const dateB = new Date(b.date.split('/').reverse().join('-'));
         return dateA - dateB;
       });
     } else if (option === 'dateDesc') {
       // Sort by date (descending)
       sortedTasks.sort((a, b) => {
-        const dateA = new Date(a.date.split('/').reverse().join('-')); // Convert "DD/MM/YYYY" to "YYYY-MM-DD"
+        const dateA = new Date(a.date.split('/').reverse().join('-'));
         const dateB = new Date(b.date.split('/').reverse().join('-'));
         return dateB - dateA;
       });
@@ -136,7 +136,8 @@ const LocalTodoScreen = () => {
       });
     }
 
-    setFilteredTasks(sortedTasks); // Update filteredTasks with the sorted list
+    // Update filteredTasks without removing options
+    setFilteredTasks(sortedTasks);
     setSortOption(option); // Save the selected option
   };
 
@@ -240,6 +241,10 @@ const LocalTodoScreen = () => {
               'Sort by Time (Descending)',
             ]}
             onSelect={(index, value) => {
+              // Debug log to check index and value
+              console.log('Selected Index:', index);
+              console.log('Selected Value:', value);
+
               // Call handleSort based on the selected option
               if (value === 'Sort by Name') handleSort('name');
               if (value === 'Sort by Date (Ascending)') handleSort('dateAsc');
@@ -250,8 +255,7 @@ const LocalTodoScreen = () => {
             defaultValue="Sort Tasks"
             dropdownStyle={styles.dropdownStyle}
             textStyle={styles.dropdownTextStyle}
-            showsVerticalScrollIndicator={false} // Disable scroll bar for dropdown
-          >
+            showsVerticalScrollIndicator={true}>
             <View style={styles.filterButton}>
               <Image
                 source={require('../../assets/filter.png')}
