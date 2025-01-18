@@ -16,7 +16,9 @@ const TaskList = ({
     <View style={styles.mainContainer}>
       <TouchableOpacity
         style={[styles.container, {backgroundColor: backgroundColor}]}>
-        <Text style={styles.titleStyle}>{title}</Text>
+        <Text style={styles.titleStyle} numberOfLines={1}>
+          {title}
+        </Text>
         {description && (
           <View style={styles.descriptionStyle}>
             <Text numberOfLines={1}>{description}</Text>
