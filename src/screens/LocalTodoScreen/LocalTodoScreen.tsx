@@ -297,13 +297,20 @@ const LocalTodoScreen = () => {
       </TouchableOpacity>
 
       {/* Task List using FlatList */}
-      <FlatList
-        data={filteredTasks} // Use filteredTasks instead of all tasks
-        renderItem={renderTaskItem}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.flatListContainer}
-        ItemSeparatorComponent={() => <View style={{height: hp(3)}} />}
-      />
+      {filteredTasks.length > 0 ? (
+        <FlatList
+          data={filteredTasks} // Use filteredTasks instead of all tasks
+          renderItem={renderTaskItem}
+          keyExtractor={item => item.id}
+          contentContainerStyle={styles.flatListContainer}
+          ItemSeparatorComponent={() => <View style={{height: hp(3)}} />}
+        />
+      ) : (
+        <Image
+          source={require('../../assets/box.png')}
+          style={styles.emptyStyle}
+        />
+      )}
 
       {/* Modal */}
       <Modal

@@ -156,7 +156,12 @@ export const useStyle = () => {
       elevation: 5,
       paddingVertical: 10,
     },
+    emptyStyle: {
+      width: wp(85),
+      height: wp(85),
 
+      alignSelf: 'center',
+    },
     dropdownTextStyle: {
       fontSize: 16,
       color: 'black',
