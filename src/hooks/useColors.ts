@@ -10,6 +10,7 @@ const useColors = () => {
     iconColor: '#8799b0',
     placeholderColor: '#cdd3d8',
     createBtn: '#0ea5e9',
+    btnBackground: '#05243e',
   };
   return {colors};
 };

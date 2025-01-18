@@ -15,6 +15,7 @@ export const useStyle = () => {
     container: {
       width: '75%',
       paddingHorizontal: wp(5),
+      borderRadius: wp(2),
     },
     mainContainer: {
       flexDirection: 'row',

@@ -69,12 +69,25 @@ const LocalTodoScreen = () => {
       title={item.taskName}
       description={item.taskDescription}
       date={item.date}
-      time={item.time}
+      time={formatTime(item.time)}
       backgroundColor="white"
       readMore
       remove
+      item={item}
     />
   );
+
+  function formatTime(timeString) {
+    const [hours, minutes] = timeString.split(':').map(Number);
+
+    const ampm = hours >= 12 ? 'pm' : 'am';
+
+    const formattedHours = hours % 12 || 12;
+
+    return `${String(formattedHours).padStart(2, '0')} : ${String(
+      minutes,
+    ).padStart(2, '0')} ${ampm}`;
+  }
 
   return (
     <LinearGradient
@@ -140,6 +153,7 @@ const LocalTodoScreen = () => {
             textAlignVertical="top"
             value={taskDescription}
             onChangeText={setTaskDescription}
+            maxLength={50}
           />
 
           {/* Date and Time Fields */}

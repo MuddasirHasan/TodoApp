@@ -13,7 +13,11 @@ function LocalTodoStack() {
         component={LocalTodoScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="ViewTodoScreen" component={ViewTodoScreen} />
+      <Stack.Screen
+        name="ViewTodoScreen"
+        component={ViewTodoScreen}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 }
