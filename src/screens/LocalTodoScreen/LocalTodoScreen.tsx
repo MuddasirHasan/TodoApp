@@ -38,8 +38,14 @@ const LocalTodoScreen = () => {
   const [taskTime, setTaskTime] = useState(new Date());
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
   const [isTimePickerVisible, setTimePickerVisible] = useState(false);
+  const [isSearchDatePickerVisible, setSearchDatePickerVisible] =
+    useState(false);
+  const [isSearchTimePickerVisible, setSearchTimePickerVisible] =
+    useState(false);
   const [searchQuery, setSearchQuery] = useState(''); // Search query state
   const [filteredTasks, setFilteredTasks] = useState(reversedTasks); // Filtered tasks state
+  const [filterDate, setFilterDate] = useState(null); // Filter by date
+  const [filterTime, setFilterTime] = useState(null); // Filter by time
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -67,6 +73,31 @@ const LocalTodoScreen = () => {
     }
   };
 
+  const handleFilter = () => {
+    console.log('Filtering tasks...');
+    let filtered = reversedTasks;
+
+    // Check if date is selected and filter by date
+    if (filterDate) {
+      const formattedFilterDate = filterDate
+        .toLocaleDateString('en-GB') // Convert to DD/MM/YYYY
+        .replace(/-/g, '/'); // Ensure separators are correct
+      filtered = filtered.filter(task => task.date === formattedFilterDate);
+    }
+
+    // Check if time is selected and filter by time
+    if (filterTime) {
+      const formattedFilterTime = filterTime.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false, // Use 24-hour format
+      });
+      filtered = filtered.filter(task => task.time === formattedFilterTime);
+    }
+
+    setFilteredTasks(filtered);
+  };
+
   const handleSearch = () => {
     if (searchQuery.trim() === '') {
       setFilteredTasks(reversedTasks); // Show all tasks if search query is empty
@@ -79,8 +110,32 @@ const LocalTodoScreen = () => {
   };
 
   useEffect(() => {
-    setFilteredTasks(reversedTasks); // Update filtered tasks when reversedTasks change
+    setFilteredTasks(reversedTasks);
   }, [reversedTasks]); // Use reversedTasks as dependency
+
+  useEffect(() => {
+    let filtered = reversedTasks;
+
+    // Filter by date
+    if (filterDate) {
+      const formattedFilterDate = filterDate
+        .toLocaleDateString('en-GB') // Convert to DD/MM/YYYY
+        .replace(/-/g, '/'); // Ensure separators are correct
+      filtered = filtered.filter(task => task.date === formattedFilterDate);
+    }
+
+    // Filter by time
+    if (filterTime) {
+      const formattedFilterTime = filterTime.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false, // Use 24-hour format
+      });
+      filtered = filtered.filter(task => task.time === formattedFilterTime);
+    }
+
+    setFilteredTasks(filtered);
+  }, [filterDate, filterTime, reversedTasks]); // Run whenever date, time, or tasks change
 
   const renderTaskItem = ({item}) => (
     <TaskList
@@ -138,6 +193,31 @@ const LocalTodoScreen = () => {
             source={require('../../assets/filter.png')}
             tintColor={colors.iconColor}
           />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.filterSearchContainer}>
+        {/* Date Filter */}
+        <TouchableOpacity
+          style={styles.searchFilterContainer}
+          onPress={() => setSearchDatePickerVisible(true)}>
+          <Image
+            source={require('../../assets/miniCalender.png')}
+            tintColor={colors.placeholderColor}
+          />
+          <Text style={{color: colors.white, marginLeft: wp(1)}}>
+            Filter by Date
+          </Text>
+        </TouchableOpacity>
+
+        {/* Time Filter */}
+        <TouchableOpacity
+          style={styles.searchFilterContainer1}
+          onPress={() => setSearchTimePickerVisible(true)}>
+          <Image
+            source={require('../../assets/miniClock.png')}
+            tintColor={colors.iconColor}
+          />
+          <Text style={{color: colors.white}}>Filter by Time</Text>
         </TouchableOpacity>
       </View>
 
@@ -248,6 +328,34 @@ const LocalTodoScreen = () => {
           </View>
         </View>
       </Modal>
+
+      {/* Date Picker */}
+      <DatePicker
+        modal
+        open={isSearchDatePickerVisible}
+        date={filterDate || new Date()}
+        mode="date"
+        onConfirm={date => {
+          setSearchDatePickerVisible(false);
+          setFilterDate(date);
+          handleFilter();
+        }}
+        onCancel={() => setDatePickerVisible(false)}
+      />
+
+      {/* Time Picker */}
+      <DatePicker
+        modal
+        open={isSearchTimePickerVisible}
+        date={filterTime || new Date()}
+        mode="time"
+        onConfirm={time => {
+          setSearchTimePickerVisible(false);
+          setFilterTime(time);
+          handleFilter();
+        }}
+        onCancel={() => setTimePickerVisible(false)}
+      />
     </LinearGradient>
   );
 };

@@ -63,6 +63,33 @@ export const useStyle = () => {
       height: hp(5),
       top: hp(1.5),
     },
+    filterSearchContainer: {
+      flexDirection: 'row',
+      width: '90%',
+      marginTop: hp(2),
+      alignSelf: 'center',
+    },
+
+    searchFilterContainer1: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: colors.primary2,
+      width: '35%',
+      justifyContent: 'space-between',
+      padding: wp(1),
+      borderRadius: wp(1),
+      marginLeft: wp(4),
+    },
+
+    searchFilterContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: colors.primary2,
+      width: '35%',
+      justifyContent: 'space-between',
+      padding: wp(1),
+      borderRadius: wp(1),
+    },
     addTaskBtn: {
       width: '50%',
       backgroundColor: colors.primary2,

@@ -149,7 +149,7 @@ const ViewTodoScreen = () => {
         onBackdropPress={toggleModal}
         style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Add New Task</Text>
+          <Text style={styles.modalTitle}>Update Your Task</Text>
           {/* Task Title */}
           <TextInput
             style={styles.modalInput}
