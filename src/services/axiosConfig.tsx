@@ -26,7 +26,7 @@ function navigate() {
         index: 1,
         routes: [
           {
-            name: 'MainNavigator',
+            name: 'AppStackNavigator',
             params: {
               screen: 'SigninScreen',
             },
@@ -49,18 +49,10 @@ const dataServer = axios.create({
 
 dataServer.interceptors.request.use(async config => {
   const state = await NetInfo.fetch();
-  const accessToken = await UseAccessToken();
-
   if (!state.isConnected) {
     return Promise.reject({message: 'No internet connection'});
   }
-  if (config.data && config.data instanceof FormData) {
-    config.headers['Content-Type'] = 'multipart/form-data';
-  }
-  if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`;
-  }
-  return config;
+  return config; // No token required
 });
 
 dataServer.interceptors.response.use(
