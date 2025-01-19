@@ -11,6 +11,8 @@ const useColors = () => {
     placeholderColor: '#cdd3d8',
     createBtn: '#0ea5e9',
     btnBackground: '#05243e',
+    complete: '#cbf7b8',
+    incomplete: '#fffec8',
   };
   return {colors};
 };

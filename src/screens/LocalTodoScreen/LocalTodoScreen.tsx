@@ -304,6 +304,8 @@ const LocalTodoScreen = () => {
           keyExtractor={item => item.id}
           contentContainerStyle={styles.flatListContainer}
           ItemSeparatorComponent={() => <View style={{height: hp(3)}} />}
+          showsVerticalScrollIndicator={false}
+          style={{marginBottom: hp(1)}}
         />
       ) : (
         <Image

@@ -7,7 +7,7 @@ export const getTodos = createAsyncThunk(
   async (_, {rejectWithValue}) => {
     try {
       const todos = await dataServer.get('todos'); // 'todos' already contains the array
-      console.log('API Response:', todos); // Directly logs the array
+
       return todos; // Return the todos array
     } catch (error) {
       console.error('Error fetching todos:', error);

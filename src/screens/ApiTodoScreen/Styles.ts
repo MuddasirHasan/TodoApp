@@ -25,6 +25,14 @@ export const useStyle = () => {
       marginTop: hp(2),
       borderRadius: wp(1),
     },
+    flatListContainer: {},
+
+    btnTxtStyle: {
+      color: colors.white,
+      fontSize: fontSizes.FONT_SIZE_14,
+      fontWeight: 'bold',
+      letterSpacing: 1,
+    },
     titleStyle: {
       color: colors.white,
       marginLeft: wp(5),

@@ -6,7 +6,7 @@ import {useStyle} from './Styles';
 import {useNavigation} from '@react-navigation/native';
 const styles = useStyle();
 
-const TaskList = ({
+const ApiTaskList = ({
   backgroundColor,
   title,
   description,
@@ -35,7 +35,7 @@ const TaskList = ({
         )}
         {description && (
           <View style={styles.descriptionStyle}>
-            <Text numberOfLines={1}>{description}</Text>
+            <Text>{description}</Text>
           </View>
         )}
         <View style={styles.timeDateContainer}>
@@ -63,4 +63,4 @@ const TaskList = ({
   );
 };
 
-export default TaskList;
+export default ApiTaskList;
