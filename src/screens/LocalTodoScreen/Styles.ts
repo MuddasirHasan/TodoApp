@@ -149,12 +149,12 @@ export const useStyle = () => {
       color: colors.white,
     },
     dropdownStyle: {
-      width: 200,
-      maxHeight: 200,
-      backgroundColor: 'white',
-      borderRadius: 8,
+      width: wp(40),
+      maxHeight: hp(30),
+      backgroundColor: colors.white,
+      borderRadius: wp(2),
       elevation: 5,
-      paddingVertical: 10,
+      paddingVertical: hp(1),
     },
     emptyStyle: {
       width: wp(85),
