@@ -99,7 +99,7 @@ export const useStyle = () => {
       alignItems: 'center',
       padding: wp(2),
       borderRadius: wp(2),
-      marginBottom: hp(3),
+      marginBottom: hp(2),
     },
     flatListContainer: {},
 

@@ -32,7 +32,7 @@ export const useStyle = () => {
     titleStyle: {
       color: colors.black,
       fontWeight: '700',
-      fontSize: fontSizes.FONT_SIZE_18,
+      fontSize: fontSizes.FONT_SIZE_16,
     },
     descriptionStyle: {
       width: '80%',
@@ -44,12 +44,12 @@ export const useStyle = () => {
       fontWeight: 'bold',
     },
     dateText: {
-      color: colors.black,
-      fontWeight: '500',
+      color: colors.white,
+      fontWeight: '800',
     },
     timeText: {
-      color: colors.black,
-      fontWeight: '500',
+      color: colors.white,
+      fontWeight: '800',
     },
     timeDateContainer: {
       flexDirection: 'row',
@@ -57,6 +57,18 @@ export const useStyle = () => {
       justifyContent: 'space-between',
       width: '50%',
       marginBottom: hp(1),
+    },
+    dateStyleContainer: {
+      backgroundColor: 'red',
+      padding: wp(1.5),
+      borderRadius: wp(1),
+      marginRight: wp(2),
+    },
+    timeStyleContainer: {
+      backgroundColor: '#efb701',
+      padding: wp(1.5),
+      borderRadius: wp(1),
+      marginLeft: wp(2),
     },
   });
 

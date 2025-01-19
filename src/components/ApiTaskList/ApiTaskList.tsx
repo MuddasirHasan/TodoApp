@@ -26,8 +26,7 @@ const ApiTaskList = ({
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity
-        style={[styles.container, {backgroundColor: backgroundColor}]}
-        onPress={() => navigation.navigate('ViewTodoScreen', {item: item})}>
+        style={[styles.container, {backgroundColor: backgroundColor}]}>
         {title && (
           <Text style={styles.titleStyle} numberOfLines={1}>
             {title}

@@ -1,6 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import {deleteTask} from '../../store/taskSlice';
 import {useStyle} from './Styles';
 import {useNavigation} from '@react-navigation/native';
@@ -39,9 +43,17 @@ const TaskList = ({
           </View>
         )}
         <View style={styles.timeDateContainer}>
-          {date && <Text style={styles.dateText}>{date}</Text>}
-          {date && <Text style={styles.symbol}>{' | '}</Text>}
-          {time && <Text style={styles.timeText}>{time}</Text>}
+          {date && (
+            <View style={styles.dateStyleContainer}>
+              <Text style={styles.dateText}>{date}</Text>
+            </View>
+          )}
+
+          {time && (
+            <View style={styles.timeStyleContainer}>
+              <Text style={styles.timeText}>{time}</Text>
+            </View>
+          )}
         </View>
       </TouchableOpacity>
       {readMore && (
