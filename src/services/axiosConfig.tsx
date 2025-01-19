@@ -52,7 +52,7 @@ dataServer.interceptors.request.use(async config => {
   if (!state.isConnected) {
     return Promise.reject({message: 'No internet connection'});
   }
-  return config; // No token required
+  return config;
 });
 
 dataServer.interceptors.response.use(

@@ -75,7 +75,7 @@ const ViewTodoScreen = () => {
     if (taskTitle && taskDescription && taskDate && taskTime) {
       dispatch(
         updateTask({
-          id: item.id, // Pass task ID
+          id: item.id,
           taskName: taskTitle,
           taskDescription,
           date: taskDate.toLocaleDateString(),
@@ -87,7 +87,7 @@ const ViewTodoScreen = () => {
         }),
       );
       toggleModal();
-      navigation.goBack(); // Navigate back after updating
+      navigation.goBack();
     } else {
       alert('Please fill in all fields');
     }

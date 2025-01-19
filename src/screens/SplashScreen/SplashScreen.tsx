@@ -14,7 +14,7 @@ const SplashScreen = () => {
       style={styles.screen}>
       <Image
         source={require('../../assets/Checkmark.png')}
-        style={styles.image} // Add styles for the image
+        style={styles.image}
       />
       <Text style={styles.text}>Just Do IT</Text>
     </LinearGradient>

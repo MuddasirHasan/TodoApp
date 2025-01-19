@@ -7,14 +7,14 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/store/store';
 
 const App = () => {
-  const [isSplashVisible, setSplashVisible] = useState(true); // SplashScreen ka state
+  const [isSplashVisible, setSplashVisible] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setSplashVisible(false); // 4 seconds ke baad SplashScreen ko hide karna
+      setSplashVisible(false);
     }, 4000);
 
-    return () => clearTimeout(timer); // Timer ko cleanup karna
+    return () => clearTimeout(timer);
   }, []);
 
   return (

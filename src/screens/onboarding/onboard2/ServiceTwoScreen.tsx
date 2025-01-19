@@ -19,7 +19,7 @@ const ServiceTwoScreen = () => {
       style={styles.screen}>
       <Image
         source={require('../../../assets/calender.png')}
-        style={styles.image} // Add styles for the image
+        style={styles.image}
       />
       <Text style={styles.text}>
         Make a full schedule for the whole week and stay organized and

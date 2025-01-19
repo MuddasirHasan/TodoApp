@@ -19,7 +19,7 @@ const ServiceThreeScreen = () => {
       style={styles.screen}>
       <Image
         source={require('../../../assets/secure.png')}
-        style={styles.image} // Add styles for the image
+        style={styles.image}
       />
       <Text style={styles.text}>You informations are secure with us</Text>
       <TouchableOpacity style={styles.btnBackground} onPress={handleNext}>

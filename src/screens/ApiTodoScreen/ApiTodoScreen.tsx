@@ -25,20 +25,20 @@ const styles = useStyle();
 const ApiTodoScreen = () => {
   const {colors} = useColors();
   const dispatch = useDispatch();
-  const [tasks, setTasks] = useState([]); // Store all tasks
-  const [loading, setLoading] = useState(false); // Loading for API call
-  const [isFetchingMore, setIsFetchingMore] = useState(false); // For pagination spinner
-  const [page, setPage] = useState(1); // Track the current page
-  const [hasMore, setHasMore] = useState(true); // Determine if more data is available
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
-  const ITEMS_PER_PAGE = 10; // Number of items to load per page
+  const ITEMS_PER_PAGE = 10;
 
   const fetchTodos = async (pageNumber = 1) => {
-    if (!hasMore) return; // Stop fetching if no more data is available
+    if (!hasMore) return;
 
     try {
-      setLoading(pageNumber === 1); // Show initial spinner for the first page
-      setIsFetchingMore(pageNumber > 1); // Show pagination spinner for subsequent pages
+      setLoading(pageNumber === 1);
+      setIsFetchingMore(pageNumber > 1);
 
       const response = await dispatch(getTodos());
       if (response?.payload) {
@@ -47,10 +47,10 @@ const ApiTodoScreen = () => {
         const paginatedData = response.payload.slice(startIndex, endIndex);
 
         if (paginatedData.length < ITEMS_PER_PAGE) {
-          setHasMore(false); // No more data to fetch
+          setHasMore(false);
         }
 
-        setTasks(prevTasks => [...prevTasks, ...paginatedData]); // Append new items
+        setTasks(prevTasks => [...prevTasks, ...paginatedData]);
       } else {
         Alert.alert('Something went wrong');
       }
@@ -110,7 +110,7 @@ const ApiTodoScreen = () => {
       </View>
 
       {/* Spinner */}
-      {/* Spinner */}
+
       {loading && (
         <Spinner
           visible={loading}
@@ -128,9 +128,9 @@ const ApiTodoScreen = () => {
             keyExtractor={(_, index) => index.toString()}
             contentContainerStyle={styles.flatListContainer}
             ItemSeparatorComponent={() => <View style={{height: hp(2)}} />}
-            onEndReached={loadMoreTodos} // Trigger when reaching the end
-            onEndReachedThreshold={0.5} // Trigger when 50% of the list is visible
-            ListFooterComponent={renderFooter} // Show spinner for pagination
+            onEndReached={loadMoreTodos}
+            onEndReachedThreshold={0.5}
+            ListFooterComponent={renderFooter}
           />
         </View>
       )}

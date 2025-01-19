@@ -44,10 +44,10 @@ const LocalTodoScreen = () => {
     useState(false);
   const [isSearchTimePickerVisible, setSearchTimePickerVisible] =
     useState(false);
-  const [searchQuery, setSearchQuery] = useState(''); // Search query state
-  const [filteredTasks, setFilteredTasks] = useState(reversedTasks); // Filtered tasks state
-  const [filterDate, setFilterDate] = useState(null); // Filter by date
-  const [filterTime, setFilterTime] = useState(null); // Filter by time
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredTasks, setFilteredTasks] = useState(reversedTasks);
+  const [filterDate, setFilterDate] = useState(null);
+  const [filterTime, setFilterTime] = useState(null);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -79,20 +79,18 @@ const LocalTodoScreen = () => {
     console.log('Filtering tasks...');
     let filtered = reversedTasks;
 
-    // Check if date is selected and filter by date
     if (filterDate) {
       const formattedFilterDate = filterDate
-        .toLocaleDateString('en-GB') // Convert to DD/MM/YYYY
-        .replace(/-/g, '/'); // Ensure separators are correct
+        .toLocaleDateString('en-GB')
+        .replace(/-/g, '/');
       filtered = filtered.filter(task => task.date === formattedFilterDate);
     }
 
-    // Check if time is selected and filter by time
     if (filterTime) {
       const formattedFilterTime = filterTime.toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false, // Use 24-hour format
+        hour12: false,
       });
       filtered = filtered.filter(task => task.time === formattedFilterTime);
     }
@@ -101,7 +99,7 @@ const LocalTodoScreen = () => {
   };
 
   const handleSort = option => {
-    let sortedTasks = [...filteredTasks]; // Clone the current filtered tasks
+    let sortedTasks = [...filteredTasks];
 
     if (option === 'name') {
       // Sort by name (alphabetically)
@@ -136,14 +134,13 @@ const LocalTodoScreen = () => {
       });
     }
 
-    // Update filteredTasks without removing options
     setFilteredTasks(sortedTasks);
-    setSortOption(option); // Save the selected option
+    setSortOption(option);
   };
 
   const handleSearch = () => {
     if (searchQuery.trim() === '') {
-      setFilteredTasks(reversedTasks); // Show all tasks if search query is empty
+      setFilteredTasks(reversedTasks);
     } else {
       const filtered = reversedTasks.filter(task =>
         task.taskName.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -154,7 +151,7 @@ const LocalTodoScreen = () => {
 
   useEffect(() => {
     setFilteredTasks(reversedTasks);
-  }, [reversedTasks]); // Use reversedTasks as dependency
+  }, [reversedTasks]);
 
   useEffect(() => {
     let filtered = reversedTasks;
@@ -162,8 +159,8 @@ const LocalTodoScreen = () => {
     // Filter by date
     if (filterDate) {
       const formattedFilterDate = filterDate
-        .toLocaleDateString('en-GB') // Convert to DD/MM/YYYY
-        .replace(/-/g, '/'); // Ensure separators are correct
+        .toLocaleDateString('en-GB')
+        .replace(/-/g, '/');
       filtered = filtered.filter(task => task.date === formattedFilterDate);
     }
 
@@ -172,17 +169,17 @@ const LocalTodoScreen = () => {
       const formattedFilterTime = filterTime.toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false, // Use 24-hour format
+        hour12: false,
       });
       filtered = filtered.filter(task => task.time === formattedFilterTime);
     }
 
     setFilteredTasks(filtered);
-  }, [filterDate, filterTime, reversedTasks]); // Run whenever date, time, or tasks change
+  }, [filterDate, filterTime, reversedTasks]);
 
   const renderTaskItem = ({item}) => (
     <TaskList
-      id={item.id} // Pass unique task ID
+      id={item.id}
       title={item.taskName}
       description={item.taskDescription}
       date={item.date}
@@ -220,9 +217,9 @@ const LocalTodoScreen = () => {
               placeholderTextColor={colors.placeholderColor}
               value={searchQuery}
               onChangeText={text => {
-                setSearchQuery(text); // Update searchQuery state
+                setSearchQuery(text);
                 if (text.trim() === '') {
-                  setFilteredTasks(reversedTasks); // Reset to all tasks if search field is empty
+                  setFilteredTasks(reversedTasks);
                 }
               }}
             />
@@ -299,7 +296,7 @@ const LocalTodoScreen = () => {
       {/* Task List using FlatList */}
       {filteredTasks.length > 0 ? (
         <FlatList
-          data={filteredTasks} // Use filteredTasks instead of all tasks
+          data={filteredTasks}
           renderItem={renderTaskItem}
           keyExtractor={item => item.id}
           contentContainerStyle={styles.flatListContainer}

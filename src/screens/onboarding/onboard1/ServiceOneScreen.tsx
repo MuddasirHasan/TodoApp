@@ -19,7 +19,7 @@ const ServiceOneScreen = () => {
       style={styles.screen}>
       <Image
         source={require('../../../assets/note.png')}
-        style={styles.image} // Add styles for the image
+        style={styles.image}
       />
       <Text style={styles.text}>
         Plan your tasks to do, that way you’ll stay organized and you won’t skip

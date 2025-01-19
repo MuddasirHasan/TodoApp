@@ -14,8 +14,8 @@ export const useStyle = () => {
   const styles = StyleSheet.create({
     screen: {
       flex: 1,
-      justifyContent: 'center', // Center content vertically
-      alignItems: 'center', // Center content horizontally
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     text: {
       color: colors.white,
@@ -25,9 +25,9 @@ export const useStyle = () => {
       marginTop: hp(2),
     },
     image: {
-      width: wp('30%'), // Set width as a percentage of the screen width
-      height: wp('30%'), // Set height as a percentage of the screen width
-      resizeMode: 'contain', // Ensure the image scales properly
+      width: wp('30%'),
+      height: wp('30%'),
+      resizeMode: 'contain',
     },
   });
 

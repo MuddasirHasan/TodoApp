@@ -13,17 +13,17 @@ function AppStack() {
       <Stack.Screen
         name="ServiceOneScreen"
         component={ServiceOneScreen}
-        options={{headerShown: false}} // Hide header
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="ServiceTwoScreen"
         component={ServiceTwoScreen}
-        options={{headerShown: false}} // Hide header
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="ServiceThreeScreen"
         component={ServiceThreeScreen}
-        options={{headerShown: false}} // Hide header
+        options={{headerShown: false}}
       />
 
       <Stack.Screen name="BottomTab" component={BottomTab} />

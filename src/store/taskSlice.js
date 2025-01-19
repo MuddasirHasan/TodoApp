@@ -8,7 +8,7 @@ const taskSlice = createSlice({
   reducers: {
     addTask: (state, action) => {
       state.tasks.push({
-        id: Date.now().toString(), // Unique ID
+        id: Date.now().toString(),
         ...action.payload,
       });
     },

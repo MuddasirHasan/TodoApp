@@ -20,7 +20,7 @@ const ApiTaskList = ({
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const handleDelete = () => {
-    dispatch(deleteTask(id)); // Dispatch deleteTask action with task ID
+    dispatch(deleteTask(id));
   };
 
   return (

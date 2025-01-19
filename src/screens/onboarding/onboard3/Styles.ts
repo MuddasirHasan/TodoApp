@@ -14,8 +14,8 @@ export const useStyle = () => {
   const styles = StyleSheet.create({
     screen: {
       flex: 1,
-      justifyContent: 'center', // Center content vertically
-      alignItems: 'center', // Center content horizontally
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     text: {
       color: colors.white,
@@ -27,9 +27,9 @@ export const useStyle = () => {
       lineHeight: hp(3),
     },
     image: {
-      width: wp('70%'), // Set width as a percentage of the screen width
-      height: wp('70%'), // Set height as a percentage of the screen width
-      resizeMode: 'contain', // Ensure the image scales properly
+      width: wp('70%'),
+      height: wp('70%'),
+      resizeMode: 'contain',
     },
     btnText: {
       color: colors.primary2,
